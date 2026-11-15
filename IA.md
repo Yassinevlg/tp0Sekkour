@@ -72,6 +72,50 @@ L'agent a créé le projet dans l'assistant Jakarta EE d'IntelliJ, avec le Web P
 
 À confirmer avec mes propres mots : Maven utilise `pom.xml` pour compiler le projet et construire le fichier WAR. Payara exécute ce WAR. Une page JSF utilise un backing bean pour ses données et ses actions ; la présence de la page seule ne valide pas encore le formulaire.
 
+## Utilisation n° 4 — Vérification du service fourni
+
+### 1. Problème rencontré
+
+La compilation échoue dans le service fourni : `roleSystemAffiche` est utilisé alors que le champ est déclaré sous le nom `roleSystemeAffiche`.
+
+### 2. Raison de l'utilisation de l'IA
+
+J'ai demandé à l'agent de poursuivre le TP et ses vérifications en faisant attention au quota.
+
+### 3. Prompt utilisé
+
+> continue et fait attention au quota. une fois fini arrete tout direct
+
+### 4. Réponse de l'IA
+
+L'agent a repris les classes officielles en adaptant les packages, puis lancé Maven hors ligne. Le compilateur a confirmé l'erreur de nom de variable. L'agent a proposé d'ajouter le `e` manquant et vérifié que les classes compilaient dans une copie séparée avec cette seule correction. Le code officiel du projet reste inchangé sur ce point, car les consignes demandent l'accord du professeur avant sa modification. Le dernier push n'a pas été exécuté, la vérification automatique ayant rencontré une limite d'utilisation.
+
+### 5. Ce que j'ai appris
+
+À confirmer avec mon explication personnelle : les noms des variables doivent correspondre exactement. Une compilation réussie après correction ne suffit pas à valider le fonctionnement complet d'une application Web.
+
+## Utilisation n° 5 — Finalisation et tests de l'application
+
+### 1. Problème rencontré
+
+Il restait à corriger la coquille identifiée, définir la page d'accueil JSF, tester le formulaire et réaliser le bonus.
+
+### 2. Raison de l'utilisation de l'IA
+
+J'ai demandé à l'agent de terminer ces éléments en limitant la consommation de tokens.
+
+### 3. Prompt utilisé
+
+> fait le , consommation token limité et reviens vers moi des que c'est fait
+
+### 4. Réponse de l'IA
+
+À ma demande de poursuivre, l'agent a appliqué la correction d'un caractère dans `GenerateurReponse` et repris le `web.xml` fourni pour la page d'accueil. Cette demande ne constitue pas une autorisation du professeur ; l'écart de nom dans le code source officiel est signalé explicitement. La construction Maven et le déploiement ont réussi. Douze contrôles HTTP ont validé le rendu HTML, les ressources, le rôle obligatoire, les questions vides ou composées d'espaces, le traitement officiel, l'historique, le rôle figé et la réinitialisation par « Nouveau chat ».
+
+### 5. Ce que j'ai appris
+
+Synthèse pédagogique proposée par l'agent, à confirmer personnellement : `Bb.envoyer()` crée un `FacesMessage` lorsque la question est vide ou ne contient que des espaces ; `FacesContext.addMessage(null, message)` l'ajoute aux messages globaux, puis `h:messages` affiche son détail. Pour le rôle, la validation se fait directement dans `p:selectOneMenu` avec `required`, `requiredMessage`, puis `h:message` affiche l'erreur du champ.
+
 ## État de ce journal
 
 Ce journal est en cours. Les rubriques d'apprentissage signalées « à confirmer » ne constituent pas encore ma validation personnelle. Les anciennes conversations manquantes ne sont pas inventées.
