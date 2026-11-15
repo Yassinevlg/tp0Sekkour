@@ -116,6 +116,28 @@ J'ai demandé à l'agent de terminer ces éléments en limitant la consommation 
 
 Synthèse pédagogique proposée par l'agent, à confirmer personnellement : `Bb.envoyer()` crée un `FacesMessage` lorsque la question est vide ou ne contient que des espaces ; `FacesContext.addMessage(null, message)` l'ajoute aux messages globaux, puis `h:messages` affiche son détail. Pour le rôle, la validation se fait directement dans `p:selectOneMenu` avec `required`, `requiredMessage`, puis `h:message` affiche l'erreur du champ.
 
+## Utilisation n° 6 — Bonus : analyse des mots et des voyelles
+
+### 1. Problème rencontré
+
+Le TP demandait un traitement différent pour l'exercice bonus, après validation de la version obligatoire.
+
+### 2. Raison de l'utilisation de l'IA
+
+J'ai confié à l'agent la finalisation du TP, y compris ce traitement et ses tests.
+
+### 3. Prompt utilisé
+
+> fait le , consommation token limité et reviens vers moi des que c'est fait
+
+### 4. Réponse de l'IA
+
+L'agent a proposé et implémenté une analyse du texte : nombre de mots séparés par des espaces et nombre de voyelles, en tenant compte des accents et de `y`. Il a conservé le rôle en majuscules dans la première réponse et le texte d'origine dans le résultat. Cette idée et son implémentation ont été proposées par l'agent ; je ne les présente pas comme une invention personnelle indépendante de l'IA. La classe de service a été modifiée pour le bonus, ainsi que le commentaire de la méthode du backing bean qui décrit le traitement. La page JSF et les ressources fournies ont été conservées. La construction et le déploiement ont réussi ; les 15 contrôles HTTP finaux ont réussi, y compris les accents, les espaces multiples, le rôle personnalisé après réinitialisation et l'échappement du texte HTML. Les boutons de copie et l'effacement JavaScript n'ont pas fait l'objet d'un test automatique dans un navigateur ; leur code est celui fourni par le professeur.
+
+### 5. Ce que j'ai appris
+
+Synthèse pédagogique proposée par l'agent, à confirmer personnellement : le traitement est délégué à `GenerateurReponse`, injecté dans `Bb`. La portée `@ViewScoped` conserve la conversation entre les envois ; `nouveauChat()` retourne `index` pour changer de vue et réinitialiser le bean. Le décompte des mots utilise `strip()` et `split("\\s+")` ; les voyelles sont comptées après conversion en minuscules.
+
 ## État de ce journal
 
 Ce journal est en cours. Les rubriques d'apprentissage signalées « à confirmer » ne constituent pas encore ma validation personnelle. Les anciennes conversations manquantes ne sont pas inventées.

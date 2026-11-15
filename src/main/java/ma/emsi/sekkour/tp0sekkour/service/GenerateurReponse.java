@@ -19,9 +19,10 @@ public class GenerateurReponse implements Serializable { // Serializable car CDI
      * Génère une réponse à une question.
      * @param question La question à modifier.
      * @param roleSysteme Le rôle système à utiliser pour la modification de la question.
-     * @return La question modifiée : le rôle système en majuscule au début de la question, s'il n'est pas null,
-     * suivi d'un saut de ligne,
-     * puis la question en minuscule, le tout entouré de "||".
+     * Bonus : compte les mots séparés par des espaces et les voyelles du texte.
+     * Les voyelles accentuées et y sont compris dans le décompte.
+     * @return L'analyse et le texte d'origine, entourés de "||", précédés
+     * du rôle en majuscules pour la première réponse du chat.
      */
     public String genererReponse(String question, String roleSysteme) {
         String resultat = "||";
@@ -30,7 +31,13 @@ public class GenerateurReponse implements Serializable { // Serializable car CDI
             resultat += roleSysteme.toUpperCase(Locale.FRENCH) + "\n";
             this.roleSystemeAffiche = true;
         }
-        resultat += question.toLowerCase(Locale.FRENCH) + "||";
+        int nombreMots = question.strip().isEmpty() ? 0 : question.strip().split("\\s+").length;
+        long nombreVoyelles = question.toLowerCase(Locale.FRENCH).chars()
+                .filter(c -> "aeiouyàâäéèêëîïôöùûüÿœæ".indexOf(c) >= 0)
+                .count();
+        resultat += "Analyse du texte\nMots : " + nombreMots
+                + "\nVoyelles : " + nombreVoyelles
+                + "\nTexte : " + question + "||";
         return resultat;
     }
 }

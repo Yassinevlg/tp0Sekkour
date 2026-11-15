@@ -113,8 +113,8 @@ public class Bb implements Serializable {
     /**
      * Envoie la question au serveur.
      * En attendant de l'envoyer à un LLM, le serveur fait un traitement quelconque, juste pour tester :
-     * Le traitement consiste à copier la question en minuscules et à l'entourer avec "||". Le rôle système
-     * est ajouté au début de la première réponse.
+     * Pour le bonus, le service compte les mots et les voyelles et conserve le texte d'origine.
+     * Le rôle système est ajouté au début de la première réponse.
      *
      * @return null pour rester sur la même page.
      */
