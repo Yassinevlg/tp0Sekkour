@@ -48,6 +48,30 @@ L'agent a lu l'énoncé et les pages complémentaires. Les consignes demandent J
 
 À confirmer avec mes propres mots : la version Java utilisée par un serveur ou par Maven peut différer de celle utilisée par IntelliJ. Le plugin Payara permet à IntelliJ de piloter un serveur ; l'archive du serveur doit aussi être extraite et son chemin configuré.
 
+## Utilisation n° 3 — Projet initial et page JSF fournie
+
+### 1. Problème rencontré
+
+Le projet généré par IntelliJ ciblait encore Java 8 dans Maven. Le lancement depuis IntelliJ échouait aussi parce qu'un autre serveur Java occupait le port 8080.
+
+### 2. Raison de l'utilisation de l'IA
+
+J'ai confié à l'agent la configuration et les vérifications du TP selon l'énoncé.
+
+### 3. Prompt utilisé
+
+> tu vas t'occuper de tout. vérifications et tp selon le prompt
+
+J'ai ensuite autorisé explicitement la publication du dépôt public `Yassinevlg/tp0Sekkour` et l'arrêt temporaire du serveur Java utilisant le port 8080.
+
+### 4. Réponse de l'IA
+
+L'agent a créé le projet dans l'assistant Jakarta EE d'IntelliJ, avec le Web Profile 11, Maven et Temurin 25. Il a réglé Maven pour Java 25, vérifié les versions des plugins, compilé et déployé le projet initial. Il a modifié le message de `HelloServlet` comme demandé dans le TP, puis confirmé son affichage. Après mon accord, il a arrêté temporairement le serveur Komeet sur le port 8080. Le lancement et le déploiement depuis IntelliJ ont alors fonctionné. Le premier commit a été publié sur GitHub. L'agent a ensuite repris la page JSF et les ressources CSS et JavaScript fournies par le professeur, ajouté PrimeFaces 16.0.2 et vérifié la construction Maven. À cette étape, le backing bean n'est pas encore ajouté : le fonctionnement complet du formulaire reste à tester.
+
+### 5. Ce que j'ai appris
+
+À confirmer avec mes propres mots : Maven utilise `pom.xml` pour compiler le projet et construire le fichier WAR. Payara exécute ce WAR. Une page JSF utilise un backing bean pour ses données et ses actions ; la présence de la page seule ne valide pas encore le formulaire.
+
 ## État de ce journal
 
 Ce journal est en cours. Les rubriques d'apprentissage signalées « à confirmer » ne constituent pas encore ma validation personnelle. Les anciennes conversations manquantes ne sont pas inventées.
